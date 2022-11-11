@@ -1,0 +1,81 @@
+<html>
+    <style>
+        .important{
+            color:rgb(197, 223, 147);
+        }
+        p{
+            color:green;  
+            font-size: 12px;
+        }
+    </style>
+    <button onclick="addParagraph()">Click Me</button>
+    <button onclick="removeParagraph()">Remove Paragraph</button>
+    <button onclick="duplicateButton()" onmouseover="changeBackgroundColor()" id="styleButton" onmouseout="changeBackgroundColor1()">Hover Your Mouse Here</button>
+    <button onclick="iterateThroughChildren()">Print Children</button>  
+    <div id="paragraph">
+        <p>
+            First Line
+        </p>
+        <p>
+            Second Line
+        </p>
+    </div>
+    <body onmousemove="myFunction(event)">
+        <h2>Cursor Axes</h2>
+        <div onmousemove="myFunction(event)" style="height: 550px;width:600px">
+            <p>
+                Cursor Location: X-axis <span id="x"></span> Y-axis: <span id="y"></span>
+            </p>
+    
+        </div>
+    </body>
+
+    <div id="newButton"></div>
+
+    
+</html>
+
+<script>
+
+    var div_elem = document.getElementById("paragraph");
+    var button_elem = document.getElementById("styleButton"); 
+    function addParagraph(){
+        //Q1. Develop code to add "Third Line" under the div
+        var new_node = document.createElement("p");
+        new_node.innerHTML="New Paragraph Added";
+        div_elem.appendChild(new_node);
+    }
+
+    function removeParagraph(){
+        if (div_elem.childNodes.length > 0){
+            div_elem.lastChild.remove();
+        }
+        else{
+            window.alert("No more paragraph to remove")
+        }
+    }
+
+    function changeBackgroundColor(){     
+        button_elem.style.backgroundColor = "Red";  
+    }
+
+    function changeBackgroundColor1(){
+         button_elem.style.backgroundColor = "#F0F0F0";
+    }
+
+    function duplicateButton(){
+        button_elem.style.backgroundColor = "#F0F0F0";
+        var new_node = document.createElement("button");
+        var new_button = document.getElementById("newButton");
+        new_node = button_elem.cloneNode(true);
+        //new_node.innerHTML="New Paragraph Added";
+        new_button.appendChild(new_node);
+    }
+    function myFunction(e){
+            var x = e.clientX;
+            var y = e.clientY;
+            document.getElementById("x").innerHTML=x;
+            document.getElementById("y").innerHTML=y;
+        }
+
+</script>
